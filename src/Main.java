@@ -38,6 +38,10 @@ public class Main {
                     controladora.conseguirHuesped();
                     break;
                 }
+                case 5:{
+                    controladora.agregarHabitacion();
+                    break;
+                }
             }
         }
         while(opcion!=-1);

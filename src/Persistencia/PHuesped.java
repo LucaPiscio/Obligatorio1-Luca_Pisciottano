@@ -64,7 +64,7 @@ public class PHuesped {
         try{
             List<List<Object>> resultado =conexion.seleccion(sql, parametros);
             if(!resultado.isEmpty()){
-                System.out.println("Se encontrop este huesped");
+                System.out.println("Se encontro este huesped");
                 int IdHuesped = (int) resultado.get(0).get(0);
                 String Nombre = String.valueOf(resultado.get(0).get(1));
                 String pApellido = String.valueOf(resultado.get(0).get(2));
