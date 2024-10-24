@@ -38,10 +38,48 @@ public class Main {
                     controladora.conseguirHuesped();
                     break;
                 }
-                case 5:{
+                case 6:{
                     controladora.agregarHabitacion();
                     break;
                 }
+                case 7:{
+                    controladora.eliminarHabitacion();
+                    break;
+                }
+                case 8:{
+                    controladora.modificarHabitacion();
+                    break;
+                }
+                case 9:{
+                    controladora.listarHabitacion();
+                    break;
+                }
+                case 10:{
+                    controladora.conseguirHabitacion();
+                    break;
+                }
+                case 11:{
+                    controladora.agregarHotel();
+                    break;
+                }
+                case 12:{
+                    controladora.eliminarHotel();
+                    break;
+                }
+                case 13:{
+                    controladora.modificarHotel();
+                    break;
+                }
+                case 14:{
+                    controladora.listarHotel();
+                    break;
+                }
+                case 15:{
+                    controladora.conseguirHotel();
+                    break;
+                }
+
+
             }
         }
         while(opcion!=-1);
@@ -53,6 +91,16 @@ public class Main {
         System.out.println("3. Modificar huesped");
         System.out.println("4. Listar huesped");
         System.out.println("5. Conseguir huesped");
+        System.out.println("6. Agregar habitacion");
+        System.out.println("7. Eliminar habitacion");
+        System.out.println("8. Modificar habitacion");
+        System.out.println("9. Listar habitacion");
+        System.out.println("10. Conseguir habitacion");
+        System.out.println("11. Agregar hotel");
+        System.out.println("12. Eliminar hotel");
+        System.out.println("13. Modificar hotel");
+        System.out.println("14. Listar hotel");
+        System.out.println("15. Conseguir hotel");
 
     }
 }
