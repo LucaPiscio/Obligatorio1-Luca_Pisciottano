@@ -55,7 +55,7 @@ public class PHotel {
     }
 
     public static Hotel conseguirHotel(int pIdHotel){
-        String sql = "SELECT IdHotel,nombre,ciudad,pais,estrellas,direccion,IdHabitacion WHERE IdHotel=?";
+        String sql = "SELECT IdHotel,nombre,ciudad,pais,estrellas,direccion,IdHabitacion from hoteles WHERE IdHotel=?";
         ArrayList<Object> parametros = new ArrayList<>(Arrays.asList(pIdHotel));
 
 

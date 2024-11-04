@@ -1,15 +1,14 @@
-import Dominio.Huesped;
-import Persistencia.PHuesped;
-import Dominio.Hotel;
-import Persistencia.PHotel;
-import Dominio.Habitacion;
-import Persistencia.PHabitacion;
+import Dominio.*;
+import Persistencia.*;
+
+import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Controladora {
     private static Scanner escaner = new Scanner(System.in);
 
-    public void agregarHuesped() {
+        public void agregarHuesped() {
         System.out.println("Agregar Huesped");
 
         String nombre;
@@ -52,15 +51,11 @@ public class Controladora {
             fnac = escaner.nextLine();
         } while (fnac.isEmpty());
 
-        int tel;
-        do {
-            System.out.println("Ingrese teléfono del huésped (solo números):");
-            try {
-                tel = Integer.parseInt(escaner.nextLine());
-            } catch (NumberFormatException e) {
-                tel = 0;
-            }
-        } while (tel == 0);
+        String tel;
+            do {
+                System.out.println("Ingrese el telefono del huésped:");
+                tel = escaner.nextLine();
+            } while (tel.isEmpty());
 
         String pais;
         do {
@@ -79,9 +74,9 @@ public class Controladora {
     public void eliminarHuesped() {
         System.out.println("Eliminar huésped");
         System.out.println("Ingrese la cédula del huésped:");
-        int ci = Integer.parseInt(escaner.nextLine());
+        int Ci = Integer.parseInt(escaner.nextLine());
 
-        if (PHuesped.eliminarHuesped(ci)) {
+        if (PHuesped.eliminarHuesped(Ci)) {
             System.out.println("Se eliminó con éxito.");
         } else {
             System.out.println("No se pudo eliminar.");
@@ -124,7 +119,7 @@ public class Controladora {
         System.out.println("Ingrese el teléfono del huésped (" + h.getTel() + "):");
         String tel = escaner.nextLine();
         if (!tel.isEmpty())
-            h.setTel(Integer.parseInt(tel));
+            h.setTel(tel);
 
         System.out.println("Ingrese el país del huésped (" + h.getPais() + "):");
         String pais = escaner.nextLine();
@@ -444,4 +439,270 @@ public void agregarHotel() {
             System.out.println(ho.toString());
         }
     }
+public void agregarTarifa() {
+    System.out.println("Agregar Tarifa");
+
+    int IdTarifa;
+    do {
+        System.out.println("Ingrese el Id de tarifa:");
+        try {
+            IdTarifa = Integer.parseInt(escaner.nextLine());
+        } catch (Exception e) {
+            IdTarifa = 0;
+        }
+    } while (IdTarifa == 0);
+
+    LocalDate Finicio;
+    do {
+        System.out.println("Ingrese fecha de inicio (formato: AAAA-MM-DD):");
+        try {
+            Finicio = LocalDate.parse(escaner.nextLine());
+        } catch (Exception e) {
+            Finicio = null;
+        }
+    } while (Finicio == null);
+
+    LocalDate Ffin;
+
+    do {
+        System.out.println("Ingrese fecha de finalizacion (formato: AAAA-MM-DD):");
+        try {
+            Ffin = LocalDate.parse(escaner.nextLine());
+        } catch (Exception e) {
+            Ffin = null;
+        }
+    } while (Ffin == null);
+
+    double monto;
+    do {
+        System.out.println("Ingrese el monto de la tarifa:");
+        try {
+            monto = Double.parseDouble(escaner.nextLine());
+        } catch (Exception e) {
+            monto = 0;
+            System.out.println("Valor no válido. Intente nuevamente.");
+        }
+    } while (monto == 0);
+
+
+    Tarifa unaTarifa = new Tarifa(IdTarifa,Finicio,Ffin,monto);
+
+    if (PTarifa.agregarTarifa(unaTarifa))
+        System.out.println("Se agregó la tariifa con éxito.");
+    else
+        System.out.println("Hubo un problema al agregar la tarifa.");
+}
+
+    public void eliminarTarifa() {
+        System.out.println("Eliminar tarifa");
+        System.out.println("Ingrese el id de tarifa:");
+        int IdTarifa = Integer.parseInt(escaner.nextLine());
+
+        if (PTarifa.eliminarTarifa(IdTarifa)) {
+            System.out.println("Se eliminó con éxito.");
+        } else {
+            System.out.println("No se pudo eliminar.");
+        }
+    }
+
+    public void modificarTarifa() {
+        System.out.println("Modificar huésped");
+
+        System.out.println("Ingrese el id de la Tarifa:");
+        int IdTarifa = Integer.parseInt(escaner.nextLine());
+
+        Tarifa t = buscarTarifa(IdTarifa);
+
+        System.out.println("Ingrese la fecha inicio (" + t.getFinicio() + "):");
+        LocalDate Finicio = LocalDate.parse(escaner.nextLine());
+        if (Finicio!=null)
+            t.setFinicio(Finicio);
+
+
+        System.out.println("Ingrese la fecha final (" + t.getFfin() + "):");
+        LocalDate Ffin = LocalDate.parse(escaner.nextLine());
+        if (Ffin!=null)
+            t.setFfin(Ffin);
+
+
+        System.out.println("Ingrese la fecha inicio (" + t.getFinicio() + "):");
+        double monto = Double.parseDouble(escaner.nextLine());
+        if (monto != 0)
+            t.setMonto(monto);
+
+        PTarifa.modificarTarifa(t);
+    }
+
+    private Tarifa buscarTarifa(int IdTarifa) {
+        return PTarifa.conseguirTarifa(IdTarifa);
+    }
+
+    public void conseguirTarifa() {
+        System.out.println("Ingrese el id de tarifa:");
+        int IdTarifa = Integer.parseInt(escaner.nextLine());
+        System.out.println(buscarTarifa(IdTarifa).toString());
+    }
+
+    public void listarTarifas() {
+        System.out.println("Listado de tarifas:");
+        for (Tarifa t : PTarifa.listarTarifas()) {
+            System.out.println(t.toString());
+        }
+    }
+    public void agregarReserva() {
+    System.out.println("Agregar reserva");
+
+    int IdReserva;
+    do {
+        System.out.println("Ingrese Id de la reserva:");
+        try {
+            IdReserva = Integer.parseInt(escaner.nextLine());
+        } catch (Exception e) {
+            IdReserva = 0;
+        }
+    } while (IdReserva == 0);
+
+    int IdHabitacion;
+    do {
+        System.out.println("Ingrese el id de la Habitacion:");
+        try {
+            IdHabitacion = Integer.parseInt(escaner.nextLine());
+        } catch (NumberFormatException e) {
+                IdHabitacion = 0;
+            }
+        } while (IdHabitacion == 0);
+
+        int IdHotel;
+        do {
+            System.out.println("Ingrese el id del Jotel:");
+            try {
+                IdHotel = Integer.parseInt(escaner.nextLine());
+            } catch (NumberFormatException e) {
+                IdHotel = 0;
+            }
+        } while (IdHotel == 0);
+
+        int IdHuesped;
+        do {
+            System.out.println("Ingrese el id del huesped:");
+            try {
+                IdHuesped = Integer.parseInt(escaner.nextLine());
+            } catch (NumberFormatException e) {
+                IdHuesped = 0;
+            }
+        } while (IdHuesped == 0);
+
+        double Monto;
+        do {
+            System.out.println("Ingrese el monto de la tarifa:");
+            try {
+                Monto = Double.parseDouble(escaner.nextLine());
+            } catch (Exception e) {
+                Monto = 0;
+                System.out.println("Valor no válido. Intente nuevamente.");
+            }
+        } while (Monto == 0);
+
+        LocalDate Fentrada;
+
+    do {
+        System.out.println("Ingrese fecha de entrada (formato: AAAA-MM-DD):");
+        try {
+            Fentrada = LocalDate.parse(escaner.nextLine());
+        } catch (Exception e) {
+            Fentrada = null;
+        }
+    } while (Fentrada == null);
+
+        LocalDate Fsalida;
+
+        do {
+            System.out.println("Ingrese fecha de entrada (formato: AAAA-MM-DD):");
+            try {
+                Fsalida = LocalDate.parse(escaner.nextLine());
+            } catch (Exception e) {
+                Fsalida = null;
+            }
+        } while (Fsalida == null);
+
+
+    Reserva unaReserva = new Reserva(IdReserva,IdHabitacion,IdHotel,IdHuesped,Monto,Fentrada,Fsalida );
+
+    if (PReserva.agregarReserva(unaReserva))
+        System.out.println("Se agregó la reserva con éxito.");
+    else
+        System.out.println("Hubo un problema al agregar la reserva.");
+}
+
+    public void eliminarReserva() {
+        System.out.println("Eliminar reserva");
+        System.out.println("Ingrese el id de la reserva:");
+        int IdReserva = Integer.parseInt(escaner.nextLine());
+
+        if (PReserva.eliminarReserva(IdReserva)) {
+            System.out.println("Se eliminó con éxito.");
+        } else {
+            System.out.println("No se pudo eliminar.");
+        }
+    }
+
+    public void modificarReserva() {
+        System.out.println("Modificar reserva");
+
+        System.out.println("Ingrese el id de la reserva a modificar:");
+        int IdReserva = Integer.parseInt(escaner.nextLine());
+
+        Reserva r = buscarReserva(IdReserva);
+
+
+        System.out.println("Ingrese el Id de Habitacion(" + r.getIdHabitacion() + "):");
+        int IdHabitacion = Integer.parseInt(escaner.nextLine());
+        if (IdHabitacion !=0)
+            r.setIdHabitacion(IdHabitacion);
+
+        System.out.println("Ingrese el Id del hotel(" + r.getIdHotel() + "):");
+        int IdHotel = Integer.parseInt(escaner.nextLine());
+        if (IdHotel !=0)
+            r.setIdHotel(IdHotel);
+
+        System.out.println("Ingrese el Id del huesped(" + r.getIdHuesped() + "):");
+        int IdHuesped = Integer.parseInt(escaner.nextLine());
+        if (IdHabitacion !=0)
+            r.setIdHuesped(IdHuesped);
+
+        System.out.println("Ingrese la fecha de Entrada (" + r.getFentrada() + "):");
+        LocalDate Fentrada = LocalDate.parse(escaner.nextLine());
+        if (Fentrada!=null)
+            r.setFentrada(Fentrada);
+
+        System.out.println("Ingrese la fecha de dalida (" + r.getFsalida() + "):");
+        LocalDate Fsalida = LocalDate.parse(escaner.nextLine());
+        if (Fsalida!=null)
+            r.setFsalida(Fsalida);
+
+
+
+        PReserva.modificarReserva(r);
+    }
+
+    private Reserva buscarReserva(int IdReserva) {
+        return PReserva.conseguirReserva(IdReserva);
+    }
+
+    public void conseguirReserva() {
+        System.out.println("Ingrese Id de la reserva:");
+        int IdReserva = Integer.parseInt(escaner.nextLine());
+        System.out.println(buscarReserva(IdReserva).toString());
+    }
+
+    public void listarReserva() {
+        System.out.println("Listado de reservas:");
+        for (Reserva r : PReserva.listarReservas()) {
+            System.out.println(r.toString());
+        }
+    }
+
+
+
+
 }

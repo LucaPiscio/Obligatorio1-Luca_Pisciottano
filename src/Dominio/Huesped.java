@@ -11,9 +11,23 @@ public class Huesped {
     private String mApellido;
     private String TipoDoc;
     private int Ci;
+
+    public Huesped(int idHuesped, String nombre, String mApellido, String pApellido, String tipoDoc, int ci, String fnac, String tel, String pais) {
+        IdHuesped = idHuesped;
+        Nombre = nombre;
+        this.pApellido = pApellido;
+        this.mApellido = mApellido;
+        TipoDoc = tipoDoc;
+        Ci = ci;
+        Fnac = fnac;
+        Tel = tel;
+        Pais = pais;
+    }
+
     private String Fnac;
-    private int Tel;
+    private String Tel;
     private String Pais;
+
 
     public int getIdHuesped() {
         return IdHuesped;
@@ -47,6 +61,7 @@ public class Huesped {
         this.mApellido = mApellido;
     }
 
+
     public String getTipoDoc() {
         return TipoDoc;
     }
@@ -71,11 +86,11 @@ public class Huesped {
         Fnac = fnac;
     }
 
-    public int getTel() {
+    public String getTel() {
         return Tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         Tel = tel;
     }
 
@@ -87,15 +102,5 @@ public class Huesped {
         Pais = pais;
     }
 
-    public Huesped(int IdHuesed,String Nombre,String pApellido,String mApellido,String TipoDoc,int Ci,String Fnac,int Tel,String Pais){
-        this.IdHuesped = IdHuesed;
-        this.Nombre = Nombre;
-        this.pApellido = pApellido;
-        this.mApellido = mApellido;
-        this.TipoDoc = TipoDoc;
-        this.Ci = Ci;
-        this.Fnac = Fnac;
-        this.Tel = Tel;
-        this.Pais = Pais;
-    }
+
 }

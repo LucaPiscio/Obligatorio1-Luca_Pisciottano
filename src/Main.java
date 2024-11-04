@@ -1,7 +1,5 @@
 import Dominio.Huesped;
 import Persistencia.Conexion;
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -9,6 +7,7 @@ import java.util.Scanner;
 public class Main {
     private static Scanner escaner = new Scanner(System.in);
     private static Controladora controladora = new Controladora();
+    private static ControladoraFiltro controladoraF = new ControladoraFiltro();
     public static void main(String[] args) {
 
         int opcion;
@@ -78,6 +77,62 @@ public class Main {
                     controladora.conseguirHotel();
                     break;
                 }
+                case 16:{
+                    controladora.agregarTarifa();
+                    break;
+                }
+                case 17:{
+                    controladora.eliminarTarifa();
+                    break;
+                }
+                case 18:{
+                    controladora.modificarTarifa();
+                    break;
+                }
+                case 19:{
+                    controladora.listarTarifas();
+                    break;
+                }
+                case 20:{
+                    controladora.conseguirTarifa();
+                    break;
+                }
+                case 21:{
+                    controladora.agregarReserva();
+                    break;
+                }
+                case 22:{
+                    controladora.eliminarReserva();
+                    break;
+                }
+                case 23:{
+                    controladora.modificarReserva();
+                    break;
+                }
+                case 24:{
+                    controladora.listarReserva();
+                    break;
+                }
+                case 25:{
+                    controladora.conseguirReserva();
+                    break;
+                }
+                case 26:{
+                    controladoraF.BusquedaNombre();
+                    break;
+                }
+                case 27:{
+                    controladoraF.BusquedaCiudad();
+                    break;
+                }
+                case 28:{
+                    controladoraF.BusquedaEstrella();
+                    break;
+                }
+                case 29:{
+                    controladoraF.reservadas();
+                    break;
+                }
 
 
             }
@@ -101,6 +156,20 @@ public class Main {
         System.out.println("13. Modificar hotel");
         System.out.println("14. Listar hotel");
         System.out.println("15. Conseguir hotel");
+        System.out.println("16. Agregar Tarifa");
+        System.out.println("17. Eliminar Tarifa");
+        System.out.println("18. Modificar Tarifa");
+        System.out.println("19. Listar Tarifa");
+        System.out.println("20. Conseguir Tarifa");
+        System.out.println("21. Agregar reserva");
+        System.out.println("22. Eliminar reserva");
+        System.out.println("23. Modificar reserva");
+        System.out.println("24. Listar reserva");
+        System.out.println("25. Conseguir reserva");
+        System.out.println("26. Buscar Por Nombre");
+        System.out.println("27. Buscar Por ciudad");
+        System.out.println("28. Buscar Por estrellas");
+        System.out.println("29. Buscar Por reservas");
 
     }
 }

@@ -27,7 +27,7 @@ public class PHuesped {
 
     }
     public static boolean eliminarHuesped(int pCi){
-        String sql = "DELETE FROM huespedes WHERE IdHuesped=?";
+        String sql = "DELETE FROM huespedes WHERE ci=?";
         ArrayList<Object> parametros = new ArrayList<>(Arrays.asList(pCi));
 
         try{
@@ -42,7 +42,7 @@ public class PHuesped {
     }
 
     public static boolean modificarHuesped(Huesped h){
-        String sql = "UPDATE huespedes SET Nombre=?, pApellido=?, mApellido=?, TipoDoc=? , Ci=?, Fnac=?, Tel=?, Pais=?WHERE IdHuesped=?";
+        String sql = "UPDATE huespedes SET Nombre=?, pApellido=?, mApellido=?, TipoDoc=? , Ci=?, Fnac=?, Tel=?, Pais=? WHERE IdHuesped=?";
         ArrayList<Object> parametros = new ArrayList<>(Arrays.asList(h.getNombre(), h.getpApellido(), h.getmApellido(), h.getTipoDoc(), h.getCi(), h.getFnac(), h.getTel(),h.getPais(),h.getIdHuesped()));
 
         try{
@@ -57,7 +57,7 @@ public class PHuesped {
     }
 
     public static Huesped conseguirHuesped(int pCi){
-        String sql = "SELECT IdHuesped,Nombre,pApellido,mApellido,TipoDoc,Ci,Fnac,Tel,Pais WHERE IdHuesped=?";
+        String sql = "SELECT IdHuesped,Nombre,pApellido,mApellido,TipoDoc,Ci,Fnac,Tel,Pais from huespedes WHERE Ci=?";
         ArrayList<Object> parametros = new ArrayList<>(Arrays.asList(pCi));
 
 
@@ -72,7 +72,7 @@ public class PHuesped {
                 String TipoDoc = String.valueOf(resultado.get(0).get(4));
                 int Ci = (int) resultado.get(0).get(5);
                 String Fnac = String.valueOf(resultado.get(0).get(6));
-                int Tel = (int) resultado.get(0).get(7);
+                String Tel = String.valueOf(resultado.get(0).get(7));
                 String Pais = String.valueOf(resultado.get(0).get(8));
                 return new Huesped(IdHuesped,Nombre,pApellido,mApellido,TipoDoc,Ci,Fnac,Tel,Pais);
             }
@@ -102,7 +102,7 @@ public class PHuesped {
                     String TipoDoc = String.valueOf(registro.get(4));
                     int Ci = (int) registro.get(5);
                     String Fnac = String.valueOf(registro.get(6));
-                    int Tel = (int) registro.get(7);
+                    String Tel = String.valueOf(registro.get(7));
                     String Pais = String.valueOf(registro.get(8));
 
                     huespedes.add(new Huesped(IdHuesped,Nombre,pApellido,mApellido,TipoDoc,Ci,Fnac,Tel,Pais));

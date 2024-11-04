@@ -55,7 +55,7 @@ public class PHabitacion {
     }
 
     public static Habitacion conseguirHabitacion(int pIdHabitacion){
-        String sql = "SELECT IdHabitacion,capacidad,matrimonial,balcon,vista,amenities,disponible WHERE IdHabitacion=?";
+        String sql = "SELECT IdHabitacion,capacidad,matrimonial,balcon,vista,amenities,disponible from habitaciones WHERE IdHabitacion=?";
         ArrayList<Object> parametros = new ArrayList<>(Arrays.asList(pIdHabitacion));
 
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Conexion {
     protected static String getCadenaDeConexion() {
-        return "jdbc:mysql://localhost:3306/prueba1?user=root&password=Root";
+        return "jdbc:mysql://localhost:3306/oblLucaPisciottano?user=root&password=Root";
     }
 
     // Método para ejecutar consultas SQL (INSERT, UPDATE, DELETE)
